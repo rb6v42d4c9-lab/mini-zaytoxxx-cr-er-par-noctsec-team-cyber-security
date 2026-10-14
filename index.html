@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mini/zaytox</title>
+<style>
+:root{--bg:#05080c;--panel:#0b121a;--cyan:#42ffe1;--green:#79ffa0;--muted:#78919b}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#10252d,#05080c 65%);color:#dcebef;font:13px monospace}
+header{padding:20px 24px;border-bottom:1px solid #1b3942;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;letter-spacing:3px;font-weight:bold;color:var(--cyan)}
+.logo span{color:white}
+.status{color:var(--green);font-size:10px}
+.layout{max-width:1450px;margin:18px auto;padding:0 12px;display:grid;grid-template-columns:200px minmax(0,1fr) 200px;gap:12px}
+.panel{background:linear-gradient(145deg,#0d161f,#080d13);border:1px solid #1b3942;border-radius:8px;padding:15px;min-width:0}
+h3,.section{font-size:10px;letter-spacing:2px;color:var(--cyan)}
+.nav{display:block;width:100%;padding:12px 8px;margin:7px 0;text-align:left;background:#070d12;border:1px solid #1b3039;border-radius:5px;color:#c4d8de;font:inherit;cursor:pointer}
+.nav:hover,.nav.active{border-color:var(--cyan);color:var(--cyan)}
+main{display:flex;flex-direction:column;gap:12px;min-width:0}
+.hero{text-align:center;padding:28px 14px}
+.sub{font-size:10px;color:var(--muted);letter-spacing:2px}
+h1{font-size:clamp(30px,5vw,48px);letter-spacing:7px;margin:12px 0;text-shadow:0 0 20px #42ffe144}
+.entry{display:flex;gap:8px;max-width:650px;margin:20px auto 0}
+input{flex:1;min-width:0;padding:12px;background:#04080c;color:white;border:1px solid #29444e;border-radius:5px;font:inherit}
+.primary{background:var(--cyan);color:#04100f;border:0;border-radius:5px;padding:12px 17px;font-weight:bold;cursor:pointer}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.metric{background:#060c11;border:1px solid #1a3038;padding:12px;border-radius:5px}
+.metric small{display:block;color:var(--muted);font-size:9px}
+.metric strong{display:block;color:var(--cyan);font-size:19px;margin-top:6px}
+#console{height:250px;overflow:auto;background:#030609;border:1px solid #172b33;border-radius:5px;padding:12px;overflow-wrap:anywhere}
+.line{margin:0 0 9px;white-space:pre-wrap}
+.ok{color:var(--green)}.warn{color:#ffd36b}
+.muted{color:var(--muted);font-size:10px}
+.item{padding:11px 0;border-bottom:1px solid #172b33}
+footer{text-align:center;padding:20px;color:#536d77;font-size:10px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.side{order:2}.right{order:3}}
+@media(max-width:480px){header{padding:14px}.entry{flex-direction:column}.cards{grid-template-columns:1fr 1fr}h1{letter-spacing:4px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">mini/<span>zaytox</span></div>
+  <div class="status">● LOCAL LAB</div>
+</header>
+<div class="layout">
+<aside class="panel side">
+<h3>◈ MODULES</h3>
+<button class="nav active" data-mode="home">▣ Identity Matrix</button>
+<button class="nav" data-mode="network">⌁ Network Pulse</button>
+<button class="nav" data-mode="cipher">⌑ Cipher Forge</button>
+<button class="nav" data-mode="signal">⌕ Signal Deck</button>
+<button class="nav" data-mode="watch">◉ Watchtower</button>
+<button class="nav" data-mode="atlas">◎ Digital Atlas</button>
+<button class="nav" data-mode="random">⛭ Random Forge</button>
+<p class="muted">Outils locaux uniquement.</p>
+</aside>
+<main>
+<section class="panel hero">
+<div class="sub">ZTX-01 / SECURITY WORKSPACE</div>
+<h1>ZAYTOX</h1>
+<div class="sub" id="subtitle">CYBER INTELLIGENCE • LOCAL LAB</div>
+<div class="entry">
+<input id="value" maxlength="500" placeholder="Entre une valeur à analyser...">
+<button class="primary" id="execute">EXÉCUTER</button>
+</div>
+<p class="muted">Aucun compte privé n'est consulté.</p>
+</section>
+<section class="panel">
+<div class="section" id="title">IDENTITY MATRIX / DASHBOARD</div>
+<div class="cards">
+<div class="metric"><small>MODULES</small><strong>07</strong></div>
+<div class="metric"><small>REQUÊTES RÉSEAU</small><strong>00</strong></div>
+<div class="metric"><small>MODE</small><strong>LOCAL</strong></div>
+</div>
+<div class="section" style="margin-top:22px">TERMINAL OUTPUT</div>
+<div id="console" aria-live="polite">
+<p class="line ok">[OK] mini/zaytox initialisé.</p>
+<p class="line">[INFO] Choisis un module à gauche.</p>
+</div>
+</section>
+</main>
+<aside class="panel right">
+<h3>◈ SYSTEM STATUS</h3>
+<div class="item">Runtime<br><span class="muted">Navigateur local</span></div>
+<div class="item">Réseau<br><span class="muted">Aucune requête envoyée</span></div>
+<div class="item">Données<br><span class="muted">Traitement local</span></div>
+<div class="item">Sécurité<br><span style="color:var(--green)">SAFE LAB</span></div>
+<h3 style="margin-top:22px">◈ QUICK ACTIONS</h3>
+<button class="nav" id="clear">⌫ Effacer la console</button>
+<button class="nav" id="export">⇩ Exporter le rapport</button>
+</aside>
+</div>
+<footer>mini/zaytox // CYBER TOOLKIT</footer>
+<script>
+const $=id=>document.getElementById(id);
+const out=$("console");
+let mode="home";
+const modules={
+home:["IDENTITY MATRIX / DASHBOARD","CYBER INTELLIGENCE • LOCAL LAB"],
+network:["NETWORK PULSE / DOMAIN CHECK","NETWORK UTILITIES"],
+cipher:["CIPHER FORGE / SHA-256","CRYPTOGRAPHIC UTILITIES"],
+signal:["SIGNAL DECK / FORMAT CHECK","INPUT VALIDATION"],
+watch:["WATCHTOWER / SECURITY AUDIT","SECURITY CHECKLIST"],
+atlas:["DIGITAL ATLAS / NOTES","LOCAL DOMAIN NOTES"],
+random:["RANDOM FORGE / KEY GENERATOR","RANDOM KEY GENERATION"]
+};
+function log(text,type=""){
+ const p=document.createElement("p");
+ p.className="line "+type;
+ p.textContent=text;
+ out.appendChild(p);
+ out.scrollTop=out.scrollHeight;
+}
+function clear(){out.replaceChildren()}
+document.querySelectorAll("[data-mode]").forEach(button=>{
+ button.addEventListener("click",()=>{
+  document.querySelectorAll("[data-mode]").forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  mode=button.dataset.mode;
+  $("title").textContent=modules[mode][0];
+  $("subtitle").textContent=modules[mode][1];
+  clear();
+  log("[ZAYTOX] Module chargé : "+modules[mode][0],"ok");
+  log("Saisis une valeur puis appuie sur EXÉCUTER.");
+ });
+});
+$("execute").addEventListener("click",async()=>{
+ const v=$("value").value.trim();
+ if(["network","cipher","signal","atlas"].includes(mode)&&!v){
+  log("[ATTENTION] Entre une valeur d'abord.","warn");return;
+ }
+ if(mode==="random"){
+  const bytes=crypto.getRandomValues(new Uint8Array(24));
+  const key=Array.from(bytes,b=>b.toString(16).padStart(2,"0")).join("");
+  log("[OK] Clé aléatoire générée localement :","ok");
+  log(key);
+ }else if(mode==="cipher"){
+  if(!crypto.subtle){log("[ERREUR] SHA-256 nécessite HTTPS.");return;}
+  const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(v));
+  log("[OK] Empreinte SHA-256 :","ok");
+  log(Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,"0")).join(""));
+ }else if(mode==="network"){
+  const valid=/^(?=.{1,253}$)([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)(\.([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?))*$/.test(v);
+  log(valid?"[OK] Syntaxe de domaine plausible.":"[INFO] Format de domaine non reconnu.",valid?"ok":"warn");
+  log("[INFO] Aucun serveur n'a été contacté.");
+ }else if(mode==="signal"){
+  const valid=/^[a-zA-Z0-9._@:/-]{1,180}$/.test(v);
+  log(valid?"[OK] Format simple accepté.":"[INFO] Caractères spéciaux détectés.",valid?"ok":"warn");
+  log("[INFO] Cela ne confirme pas l'existence d'un compte.");
+ }else if(mode==="watch"){
+  log("[AUDIT] Checklist de sécurité personnelle :");
+  ["Mises à jour activées","Authentification à deux facteurs","Mots de passe uniques","Sauvegardes récentes","Applications inconnues vérifiées"].forEach(x=>log("[CHECK] "+x));
+  log("[INFO] Aucun appareil n'a été scanné.");
+ }else if(mode==="atlas"){
+  log("[NOTE] Entrée ajoutée au rapport local : "+v,"ok");
+  log("[INFO] Aucune recherche externe n'a été lancée.");
+ }else{
+  log("[INFO] Tableau de bord mini/zaytox prêt.","ok");
+ }
+});
+$("clear").addEventListener("click",clear);
+$("export").addEventListener("click",()=>{
+ const report="mini/zaytox — rapport local\n"+new Date().toLocaleString()+"\n\n"+out.innerText;
+ const blob=new Blob([report],{type:"text/plain;charset=utf-8"});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement("a");a.href=url;a.download="mini-zaytox-rapport.txt";a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+ log("[OK] Rapport exporté.","ok");
+});
+</script>
+</body>
+</html>
